@@ -2,6 +2,7 @@ package mydict
 
 import (
 	"errors"
+	"fmt"
 )
 
 // type Money int
@@ -30,4 +31,16 @@ func (d Dictionary) Add(word, def string) error {
 		return errExist
 	}
 	return nil
+}
+
+func Test1() {
+	fmt.Println("Test1")
+	Test2()
+	defer fmt.Println("Test1 defer")
+}
+
+func Test2() {
+	defer fmt.Println("Test2 defer")
+	fmt.Println("Test2")
+
 }
