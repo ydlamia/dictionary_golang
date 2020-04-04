@@ -2,7 +2,7 @@ package mydict
 
 import (
 	"errors"
-	"fmt"
+	"log"
 )
 
 // type Money int
@@ -33,14 +33,18 @@ func (d Dictionary) Add(word, def string) error {
 	return nil
 }
 
-func Test1() {
-	fmt.Println("Test1")
-	Test2()
-	defer fmt.Println("Test1 defer")
+func (d Dictionary) Update(word, def string) {
+	_, err := d.Search(word)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	d[word] = def
 }
 
-func Test2() {
-	defer fmt.Println("Test2 defer")
-	fmt.Println("Test2")
-
+func (d Dictionary) Delete(word string) {
+	_, err := d.Search(word)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	delete(d, word)
 }
